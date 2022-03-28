@@ -30,15 +30,7 @@ namespace PlayerLogApi
             services.AddMediatR(typeof(Startup));
 
             // swagger
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo
-                {
-                    Title = "Player Log API",
-                    Version = "v1",
-                    Description = "desc"
-                });
-            });
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
