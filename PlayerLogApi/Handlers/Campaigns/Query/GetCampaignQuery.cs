@@ -30,7 +30,7 @@ namespace PlayerLogApi.Handlers.Campaigns.Query
             var camp = await _dbContext.Campaigns
                 .AsExpandable()
                 .AsNoTracking()
-                .Where(c => c.CampaignId == request.Id)
+                .Where(c => c.Id == request.Id)
                 .Select(camp => CampaignMappings.MapFromModelToDb.Invoke(camp))
                 .SingleOrDefaultAsync();
             

@@ -13,9 +13,9 @@ namespace PlayerLogApi.Data.Db.Entities
     {
         [Key]
         [Column("id")]
-        public int CampaignId { get; set; }
-        [Column("campaign_name")]
-        public string CampaignName { get; set; }
+        public int Id { get; set; }
+        [Column("name")]
+        public string Name { get; set; }
         public IEnumerable<Npc> Npcs { get; set; }
         public IEnumerable<Location> Locations { get; set; }
         public IEnumerable<Quest> Quests { get; set; }

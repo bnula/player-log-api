@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 #nullable disable
-namespace PlayerLogApi.Data.Models
+namespace PlayerLogApi.Utils.Models
 {
-    public class CampaignUpdate
+    public class DataWrapper<T>
     {
-        public string Name { get; set; }
+        public IEnumerable<T> Data { get; set; }
     }
 }

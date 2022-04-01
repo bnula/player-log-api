@@ -26,7 +26,7 @@ namespace PlayerLogApi.Handlers.Campaigns.Command
         {
             await using var transaction = await _dbContext.Database.BeginTransactionAsync(cancellationToken);
 
-            var campaign = await _dbContext.Campaigns.Where(c => c.CampaignId == request.Id).FirstOrDefaultAsync();
+            var campaign = await _dbContext.Campaigns.Where(c => c.Id == request.Id).FirstOrDefaultAsync();
             if (campaign == null)
             {
                 return Unit.Value;

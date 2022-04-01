@@ -28,13 +28,13 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
             {
                 new Data.Db.Entities.Campaign
                 {
-                    CampaignId = 1,
-                    CampaignName = "eric"
+                    Id = 1,
+                    Name = "eric"
                 },
                 new Data.Db.Entities.Campaign
                 {
-                    CampaignId = 2,
-                    CampaignName = "jimmy"
+                    Id = 2,
+                    Name = "jimmy"
                 }
             };
         }
@@ -53,15 +53,15 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
                 Id = 1,
                 Campaign = new CampaignUpdate
                 {
-                    Name = campaigns[1].CampaignName
+                    Name = campaigns[1].Name
                 }
             };
 
-            Assert.True(campaigns[0].CampaignName == await context.Campaigns.Select(c => c.CampaignName).FirstOrDefaultAsync());
+            Assert.True(campaigns[0].Name == await context.Campaigns.Select(c => c.Name).FirstOrDefaultAsync());
 
             var result = await handler.Handle(request, CancellationToken.None);
 
-            Assert.True(campaigns[1].CampaignName == await context.Campaigns.Select(c => c.CampaignName).FirstOrDefaultAsync());
+            Assert.True(campaigns[1].Name == await context.Campaigns.Select(c => c.Name).FirstOrDefaultAsync());
         }
 
     }

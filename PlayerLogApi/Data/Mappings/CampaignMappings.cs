@@ -12,8 +12,8 @@ namespace PlayerLogApi.Data.Mappings
         public static readonly Expression<Func<Db.Entities.Campaign, Models.Campaign>> MapFromModelToDb =
             campaign => new Models.Campaign
             {
-                CampaignId = campaign.CampaignId,
-                CampaignName = campaign.CampaignName,
+                Id = campaign.Id,
+                Name = campaign.Name,
             };
     }
 }

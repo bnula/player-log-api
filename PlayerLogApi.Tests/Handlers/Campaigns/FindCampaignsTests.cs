@@ -26,18 +26,17 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
             {
                 new Campaign
                 {
-                    CampaignId = 1,
-                    CampaignName = "eric"
+                    Id = 1,
+                    Name = "eric"
                 },
                 new Campaign
                 {
-                    CampaignId = 2,
-                    CampaignName = "jimmy"
+                    Id = 2,
+                    Name = "jimmy"
                 },
                 new Campaign
                 {
-                    CampaignId = 3,
-                    CampaignName = "timmy"
+                    Id = 3, Name = "timmy"
                 }
             };
             return data;

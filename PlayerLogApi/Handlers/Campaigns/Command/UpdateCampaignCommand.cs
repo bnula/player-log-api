@@ -29,14 +29,14 @@ namespace PlayerLogApi.Handlers.Campaigns.Command
 
         public async Task<Unit> Handle(UpdateCampaignCommandRequest request, CancellationToken cancellationToken)
         {
-            var camp = await _dbContext.Campaigns.Where(c => c.CampaignId == request.Id).FirstOrDefaultAsync();
+            var camp = await _dbContext.Campaigns.Where(c => c.Id == request.Id).FirstOrDefaultAsync();
             
             if (camp is null)
             {
                 return Unit.Value;
             }
             
-            camp.CampaignName = request.Campaign.Name;
+            camp.Name = request.Campaign.Name;
 
             await _dbContext.SaveChangesAsync();
             return Unit.Value;

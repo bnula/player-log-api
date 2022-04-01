@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace PlayerLogApi.Handlers.Campaigns.Query
 {
-    public class FindCampaignsQueryRequest : IRequest<CampaignResult>
+    public class FindCampaignsQueryRequest : IRequest<CampaignsResult>
     {
 
     }
 
-    public class FindCampaignsQueryHandler : IRequestHandler<FindCampaignsQueryRequest, CampaignResult>
+    public class FindCampaignsQueryHandler : IRequestHandler<FindCampaignsQueryRequest, CampaignsResult>
     {
         private readonly PlayerLogDbContext _dbContext;
 
@@ -27,9 +27,9 @@ namespace PlayerLogApi.Handlers.Campaigns.Query
             _dbContext = dbContext;
         }
 
-        public async Task<CampaignResult> Handle(FindCampaignsQueryRequest request, CancellationToken cancellationToken)
+        public async Task<CampaignsResult> Handle(FindCampaignsQueryRequest request, CancellationToken cancellationToken)
         {
-            var result = new CampaignResult();
+            var result = new CampaignsResult();
 
             var camps = _dbContext.Campaigns
                 .AsExpandable()

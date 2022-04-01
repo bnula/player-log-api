@@ -30,19 +30,24 @@ namespace PlayerLogApi.Data.Db
             modelBuilder.Entity<Campaign>()
                 .HasMany(c => c.Characters)
                 .WithOne(c => c.Campaign)
-                .HasForeignKey(c => c.CharacterId);
+                .HasForeignKey(c => c.Id);
 
             modelBuilder.Entity<Campaign>()
                 .HasData(
                 new Campaign
                 {
-                    CampaignId = 1,
-                    CampaignName = "bomba kampan"
+                    Id = 1,
+                    Name = "eric"
                 },
                 new Campaign
                 {
-                    CampaignId = 2,
-                    CampaignName = "granat kampan"
+                    Id = 2,
+                    Name = "jimmy"
+                },
+                new Campaign
+                {
+                    Id = 3,
+                    Name = "timmy"
                 });
         }
     }

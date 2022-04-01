@@ -27,13 +27,12 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
             {
                 new Campaign
                 {
-                    CampaignId = 1,
-                    CampaignName = "eric"
+                    Id = 1,
+                    Name = "eric"
                 },
                 new Campaign
                 {
-                    CampaignId = 2,
-                    CampaignName = "timmy"
+                    Id = 2, Name = "timmy"
                 }
             };
         }
@@ -52,7 +51,7 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
 
             var camps = await context.Campaigns.ToListAsync();
             Assert.True(camps.Count() == 1);
-            Assert.True(camps[0].CampaignName == "eric");
+            Assert.True(camps[0].Name == "eric");
         }
     }
 }

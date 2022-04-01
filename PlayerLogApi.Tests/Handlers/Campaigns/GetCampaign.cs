@@ -24,8 +24,8 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
         {
             return new Campaign
             {
-                CampaignId = 1,
-                CampaignName = "test"
+                Id = 1,
+                Name = "test"
             };
         }
 
@@ -42,7 +42,7 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
             var result = await handler.Handle(new GetCampaignQueryRequest { Id = 1 }, CancellationToken.None);
 
             Assert.NotNull(result);
-            Assert.True(result.CampaignName == campaign.CampaignName);
+            Assert.True(result.Name == campaign.Name);
         }
 
         [Fact(DisplayName = "Getting a campaign record that doesn't exist, return empty result")]

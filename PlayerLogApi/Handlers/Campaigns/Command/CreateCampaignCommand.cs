@@ -32,14 +32,14 @@ namespace PlayerLogApi.Handlers.Campaigns.Command
 
             var campaign = new Campaign
             {
-                CampaignId = id,
-                CampaignName = request.Name
+                Id = id,
+                Name = request.Name
             };
 
             await _dbContext.Campaigns.AddAsync(campaign);
             await _dbContext.SaveChangesAsync();
 
-            return campaign.CampaignId;
+            return campaign.Id;
         }
     }
 }

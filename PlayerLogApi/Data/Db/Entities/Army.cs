@@ -13,7 +13,7 @@ namespace PlayerLogApi.Data.Db.Entities
     {
         [Key]
         [Column("id")]
-        public int ArmyId { get; set; }
+        public int Id { get; set; }
         [Column("description")]
         public string Description { get; set; }
         [Column("notes")]

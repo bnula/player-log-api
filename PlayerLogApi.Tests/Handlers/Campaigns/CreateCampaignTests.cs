@@ -28,13 +28,13 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
             {
                 new Campaign
                 {
-                    CampaignId = 1,
-                    CampaignName = "eric"
+                    Id = 1,
+                    Name = "eric"
                 },
                 new Campaign
                 {
-                    CampaignId = 2,
-                    CampaignName = "jimmy"
+                    Id = 2,
+                    Name = "jimmy"
                 }
             };
 
@@ -52,10 +52,10 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
 
             var handler = CreateHandler(context);
             var result = await handler.Handle(new CreateCampaignCommandRequest { Name = "timmy" }, CancellationToken.None);
-            var resultDbCamp = await context.Campaigns.FirstOrDefaultAsync(c => c.CampaignName == "timmy");
+            var resultDbCamp = await context.Campaigns.FirstOrDefaultAsync(c => c.Name == "timmy");
             
             Assert.NotNull(resultDbCamp);
-            Assert.True(resultDbCamp.CampaignId == 3);
+            Assert.True(resultDbCamp.Id == 3);
         }
     }
 }

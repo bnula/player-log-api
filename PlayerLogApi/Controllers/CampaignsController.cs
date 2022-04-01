@@ -25,7 +25,7 @@ namespace PlayerLogApi.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<CampaignResult> FindCampaigns()
+        public async Task<CampaignsResult> FindCampaigns()
         {
             var request = new FindCampaignsQueryRequest();
             var result = await _sender.Send(request);

@@ -13,9 +13,9 @@ namespace PlayerLogApi.Data.Db.Entities
     {
         [Key]
         [Column("id")]
-        public int NpcId { get; set; }
-        [Column("npc_name")]
-        public string NpcName { get; set; }
+        public int Id { get; set; }
+        [Column("name")]
+        public string Name { get; set; }
         [Column("allegiance")]
         public string Allegiance { get; set; }
         [Column("description")]

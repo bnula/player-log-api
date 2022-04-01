@@ -13,9 +13,9 @@ namespace PlayerLogApi.Data.Db.Entities
     {
         [Key]
         [Column("id")]
-        public int QuestId { get; set; }
-        [Column("quest_name")]
-        public string QuestName { get; set; }
+        public int Id { get; set; }
+        [Column("name")]
+        public string Name { get; set; }
         [Column("reward")]
         public string Reward { get; set; }
         [Column("description")]
