@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using PlayerLogApi.Data.Models;
+using PlayerLogApi.Handlers.Campaigns.Command;
 using PlayerLogApi.Handlers.Campaigns.Query;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace PlayerLogApi.Controllers
 {
     [ApiController]
     [Route("[Controller]")]
-    public class CampaignController : Controller
+    public class CampaignsController : Controller
     {
         private readonly ISender _sender;
 
-        public CampaignController(ISender sender)
+        public CampaignsController(ISender sender)
         {
             _sender = sender;
         }
@@ -38,6 +39,31 @@ namespace PlayerLogApi.Controllers
         {
             var request = new GetCampaignQueryRequest { Id = id };
             var result = await _sender.Send(request);
+            if (result is null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Campaign))]
+        public async Task<IActionResult> CreateCampaign(CreateCampaignCommandRequest request)
+        {
+            var id = await _sender.Send(request);
+            var result = await _sender.Send(new GetCampaignQueryRequest { Id = id });
+            return CreatedAtAction(nameof(GetCampaign), new { id = id }, result);
+        }
+
+        [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Campaign))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateCampaign(int id, CampaignUpdate patch)
+        {
+            var request = new UpdateCampaignCommandRequest { Id = id, Campaign = patch };
+
+            await _sender.Send(request);
+            var result = await _sender.Send(new GetCampaignQueryRequest { Id = id });
             if (result is null)
             {
                 return NotFound();

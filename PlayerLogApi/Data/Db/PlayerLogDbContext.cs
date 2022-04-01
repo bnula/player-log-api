@@ -22,5 +22,28 @@ namespace PlayerLogApi.Data.Db
         public DbSet<Location> Locations { get; set; }
         public DbSet<Npc> Npcs { get; set; }
         public DbSet<Quest> Quests { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Campaign>()
+                .HasMany(c => c.Characters)
+                .WithOne(c => c.Campaign)
+                .HasForeignKey(c => c.CharacterId);
+
+            modelBuilder.Entity<Campaign>()
+                .HasData(
+                new Campaign
+                {
+                    CampaignId = 1,
+                    CampaignName = "bomba kampan"
+                },
+                new Campaign
+                {
+                    CampaignId = 2,
+                    CampaignName = "granat kampan"
+                });
+        }
     }
 }
