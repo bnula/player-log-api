@@ -16,7 +16,8 @@ namespace PlayerLogApi.Tests.Handlers.Campaigns
     {
         private GetCampaignQueryHandler CreateHandler(PlayerLogDbContext context)
         {
-            return new GetCampaignQueryHandler(context);
+            var handler = new GetCampaignQueryHandler(context);
+            return handler;
         }
 
         private Campaign CreateMockData()

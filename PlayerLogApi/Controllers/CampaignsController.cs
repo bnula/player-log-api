@@ -70,5 +70,15 @@ namespace PlayerLogApi.Controllers
             }
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public async Task<IActionResult> DeleteCampaign(int id)
+        {
+            var request = new DeleteCampaignCommandRequest { Id = id };
+            await _sender.Send(request);
+            
+            return NoContent();
+        }
     }
 }
