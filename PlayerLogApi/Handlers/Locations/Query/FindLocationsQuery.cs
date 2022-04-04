@@ -45,7 +45,7 @@ namespace PlayerLogApi.Handlers.Locations.Query
             foreach (var loc in locationModels)
             {
                 var camp = await campaigns.Where(c => c.Id == loc.Campaign.Id).FirstOrDefaultAsync();
-                loc.Campaign = CampaignMappings.MapFromModelToDb.Invoke(camp);
+                loc.Campaign = CampaignMappings.MapFromDbToModel.Invoke(camp);
             }
 
             result.Data = locationModels;

@@ -9,7 +9,7 @@ namespace PlayerLogApi.Data.Mappings
 {
     public static class CampaignMappings
     {
-        public static readonly Expression<Func<Db.Entities.Campaign, Models.Campaign>> MapFromModelToDb =
+        public static readonly Expression<Func<Db.Entities.Campaign, Models.Campaign>> MapFromDbToModel =
             campaign => new Models.Campaign
             {
                 Id = campaign.Id,

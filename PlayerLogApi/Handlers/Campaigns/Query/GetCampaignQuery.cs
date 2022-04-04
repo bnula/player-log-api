@@ -31,10 +31,21 @@ namespace PlayerLogApi.Handlers.Campaigns.Query
                 .AsExpandable()
                 .AsNoTracking()
                 .Where(c => c.Id == request.Id)
-                .Select(camp => CampaignMappings.MapFromModelToDb.Invoke(camp))
+                .Select(camp => CampaignMappings.MapFromDbToModel.Invoke(camp))
                 .SingleOrDefaultAsync();
-            
+
+            camp = await AddLocations(camp);
+
             return camp;
+        }
+
+        private async Task<Data.Models.Campaign> AddLocations(Data.Models.Campaign campaign)
+        {
+            var locations = _dbContext.Locations
+                .AsExpandable().AsNoTracking()
+                .Where(loc => loc.CampaignId == campaign.Id);
+            campaign.Locations = await locations.Select(loc => LocationMappings.MapFromDbToModel.Invoke(loc)).ToListAsync();
+            return campaign;
         }
     }
 }

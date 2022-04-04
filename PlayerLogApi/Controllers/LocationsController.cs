@@ -29,5 +29,19 @@ namespace PlayerLogApi.Controllers
             var result = await _sender.Send(request);
             return result;
         }
+
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetLocation(int id)
+        {
+            var request = new GetLocationQueryRequest { Id = id };
+            var result = await _sender.Send(request);
+            if (result is null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
+        }
     }
 }

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#nullable disable
 namespace PlayerLogApi.Handlers.Campaigns.Query
 {
     public class FindCampaignsQueryRequest : IRequest<CampaignsResult>
@@ -37,11 +38,21 @@ namespace PlayerLogApi.Handlers.Campaigns.Query
 
             result.TotalCount = await camps.CountAsync();
 
-            var campModels = camps.Select(
-                camp => CampaignMappings.MapFromModelToDb.Invoke(camp)
-                );
+            var campModels = await camps.Select(
+                camp => CampaignMappings.MapFromDbToModel.Invoke(camp)
+                )
+                .ToListAsync();
 
-            result.Data = await campModels.ToListAsync();
+            foreach (var campaign in campModels)
+            {
+                var locations = await _dbContext.Locations
+                    .AsExpandable().AsNoTracking()
+                    .Where(loc => loc.CampaignId == campaign.Id)
+                    .ToListAsync();
+                campaign.Locations = locations.Select(loc => LocationMappings.MapFromDbToModel.Invoke(loc));
+            }
+
+            result.Data = campModels;
 
             return result;
         }
