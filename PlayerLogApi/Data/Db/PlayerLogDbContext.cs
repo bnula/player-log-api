@@ -28,7 +28,7 @@ namespace PlayerLogApi.Data.Db
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Campaign>()
-                .HasMany(c => c.Characters)
+                .HasMany(c => c.Locations)
                 .WithOne(c => c.Campaign)
                 .HasForeignKey(c => c.Id);
 
@@ -49,6 +49,30 @@ namespace PlayerLogApi.Data.Db
                     Id = 3,
                     Name = "timmy"
                 });
+
+            modelBuilder.Entity<Location>()
+                .HasData(
+                new Location 
+                { 
+                    Id = 1,
+                    Name = "camp1",
+                    CampaignId = 1,
+                    Description = "desc",
+                    LocationInventory = "inv",
+                    LocationType = "type",
+                    Notes = "hehe"
+                },
+                new Location
+                {
+                    Id = 2,
+                    Name = "camp1",
+                    CampaignId = 2,
+                    Description = "desc",
+                    LocationInventory = "inv",
+                    LocationType = "type",
+                    Notes = "hehe"
+                }
+                );
         }
     }
 }

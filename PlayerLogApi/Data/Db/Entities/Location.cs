@@ -24,8 +24,8 @@ namespace PlayerLogApi.Data.Db.Entities
         public string LocationType { get; set; }
         [Column("location_inventory")]
         public string LocationInventory { get; set; }
-        public Campaign Campaign { get; set; }
         [Column("campaign_id")]
         public int CampaignId { get; set; }
+        public Campaign Campaign { get; set; }
     }
 }
